@@ -21,22 +21,19 @@ describe("Name of the group", () => {
     sinon.restore();
   });
   it("should ", (done) => {
-    $(".back").on("click", onHide);
+    const animateSpy = sinon.spy();
+    $(".back").on("click", animateSpy);
 
-    var onHide = function () {
-      BackToTop.animate();
-    };
-    var log=sinon.spy(console,"log");
+    var log = sinon.spy(console, "log");
     var bt = sinon.stub(BackToTop, "baclTop").callsFake(() => {
-      console.log("Calling");
-      onHide();
+      animateSpy();
     });
-    var animate = sinon.spy(BackToTop, "animate");
+
     BackToTop.baclTop();
 
     expect(bt.callCount).to.be.eq(1);
-    expect(animate.callCount).to.be.eq(1);
-    expect(log.callCount).to.be.eq(1);
+    expect(animateSpy.callCount).to.be.eq(2);
+    //expect(log.callCount).to.be.eq(1);
     done();
   });
 });
