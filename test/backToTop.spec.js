@@ -2,6 +2,7 @@ const jsdom = require("jsdom");
 const sinon = require("sinon");
 const expect = require("chai").expect;
 const proxyquire = require("proxyquire");
+const BackToTop = require("../src/backToTop");
 
 describe("Name of the group", () => {
   before(() => {
@@ -20,18 +21,22 @@ describe("Name of the group", () => {
     sinon.restore();
   });
   it("should ", (done) => {
-    // const onStub = sinon.stub().callsFake((handler) => handler());
-    // const jqueryStub = { on: onStub };
-    // const $ = sinon.stub().callsFake(() => jqueryStub);
+    $(".back").on("click", onHide);
 
-    // $.withArgs(".back").returns(onStub);
-    // const BackToTop = proxyquire("../src/backToTop", { jQuery: $ });
+    var onHide = function () {
+      BackToTop.animate();
+    };
+    var log=sinon.spy(console,"log");
+    var bt = sinon.stub(BackToTop, "baclTop").callsFake(() => {
+      console.log("Calling");
+      onHide();
+    });
+    var animate = sinon.spy(BackToTop, "animate");
+    BackToTop.baclTop();
 
-    const b=sinon.mock("../src/backToTop");
-    
-    b.expects('saveRemainLoggedInPreference').once().withArgs(true);
-    //expect(onStub.callCount).to.be.eq(1);
-
+    expect(bt.callCount).to.be.eq(1);
+    expect(animate.callCount).to.be.eq(1);
+    expect(log.callCount).to.be.eq(1);
     done();
   });
 });
