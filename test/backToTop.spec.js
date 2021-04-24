@@ -32,8 +32,8 @@ describe("Name of the group", () => {
     const jqueryStub = sinon.stub().callsFake(() => {
       return {
         on: x,
-        toggleClass: sinon.stub().returnsThis(),
-        animate: animateSub.returnsThis()
+        toggleClass: sinon.stub(),
+        animate: animateSub
       };
     });
 
@@ -43,7 +43,7 @@ describe("Name of the group", () => {
     });
     baclTop();
     expect(x.called).to.be.true;
-    expect(x.callCount).to.be.eq(2);
-    //expect(spy.called).to.be.true;
+    expect(x.callCount).to.be.eq(1);
+    expect(animateSub.called).to.be.true;
   });
 });
