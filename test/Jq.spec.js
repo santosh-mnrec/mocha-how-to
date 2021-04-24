@@ -4,7 +4,9 @@ const proxyquire = require("proxyquire");
 
 describe("trackCustomDyEvents", () => {
   before(() => {
-    const html = '<!doctype html><html><head><meta charset="utf-8">' + "</head><body></body></html>";
+    const html =
+      '<!doctype html><html><head><meta charset="utf-8">' +
+      "</head><body></body></html>";
     const url = "http://localhost";
     const document = new jsdom.JSDOM(html, { url });
     const window = document.window;
@@ -29,8 +31,18 @@ describe("trackCustomDyEvents", () => {
       { type: "submit", element: "form", name: "b", predicate: predicateStub },
     ];
     trackCustomDyEvents(events);
-    sinon.assert.calledWithExactly(onStub.firstCall, "click", "button", sinon.match.func);
-    sinon.assert.calledWithExactly(onStub.secondCall, "submit", "form", sinon.match.func);
+    sinon.assert.calledWithExactly(
+      onStub.firstCall,
+      "click",
+      "button",
+      sinon.match.func
+    );
+    sinon.assert.calledWithExactly(
+      onStub.secondCall,
+      "submit",
+      "form",
+      sinon.match.func
+    );
     sinon.assert.calledTwice(predicateStub);
     sinon.assert.calledWithExactly(APISpy.firstCall, "event", { name: "a" });
     sinon.assert.calledWithExactly(APISpy.secondCall, "event", { name: "b" });
@@ -51,8 +63,18 @@ describe("trackCustomDyEvents", () => {
       { type: "submit", element: "form", name: "b", predicate: predicateStub },
     ];
     trackCustomDyEvents(events);
-    sinon.assert.calledWithExactly(onStub.firstCall, "click", "button", sinon.match.func);
-    sinon.assert.calledWithExactly(onStub.secondCall, "submit", "form", sinon.match.func);
+    sinon.assert.calledWithExactly(
+      onStub.firstCall,
+      "click",
+      "button",
+      sinon.match.func
+    );
+    sinon.assert.calledWithExactly(
+      onStub.secondCall,
+      "submit",
+      "form",
+      sinon.match.func
+    );
     sinon.assert.calledTwice(predicateStub);
     sinon.assert.notCalled(APISpy);
   });

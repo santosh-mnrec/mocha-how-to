@@ -14,6 +14,7 @@
     "@types/sinon": "^10.0.0",
     "axios": "^0.21.1",
     "chai": "^4.1.2",
+    "intersection-observer": "^0.12.0",
     "jquery": "^3.6.0",
     "mocha-jsdom": "^2.0.0",
     "proxyquire": "^2.1.3",

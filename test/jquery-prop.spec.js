@@ -1,6 +1,6 @@
 const proxyquire = require("proxyquire");
 const sinon=require("sinon");
-
+const expect=require("chai").expect;
 
 describe("myFunc", () => {
   afterEach(() => {
