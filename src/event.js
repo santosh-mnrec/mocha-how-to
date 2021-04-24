@@ -1,3 +1,4 @@
+const $ = require("./Jquery");
 const App = (() => {
   $("#some-element").click(toggleMe);
   function toggleMe(e) {
