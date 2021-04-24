@@ -6,7 +6,7 @@ describe("Name of the group", () => {
   afterEach(() => {
     sinon.restore();
   });
-  it("x", () => {
+  it("should called dummy method", () => {
     const siblingsStub = sinon.stub().returnsThis();
     const jqueryStub = sinon.stub().callsFake(() => {
       return {
@@ -14,36 +14,32 @@ describe("Name of the group", () => {
         toggleClass: sinon.stub(),
       };
     });
-    const { z } = proxyquire("../src/backToTop", {
+    const { dummy } = proxyquire("../src/backToTop", {
       jquery: jqueryStub,
     });
 
-    z();
+    dummy();
     expect(jqueryStub.called).to.be.true;
     expect(siblingsStub.callCount).to.be.eq(2);
   });
-  it("should ", () => {
-   
-
+  it("should call animate ", () => {
     const siblingsStub = sinon.stub().returnsThis();
     const animateSub = sinon.stub();
-    var x=siblingsStub.yields([]);
-  var spy=sinon.spy();
+    var onStub= siblingsStub.yields([]);
     const jqueryStub = sinon.stub().callsFake(() => {
       return {
-        on: x,
+        on: onStub,
         toggleClass: sinon.stub(),
-        animate: animateSub
+        animate: animateSub,
       };
     });
 
-
-    const { baclTop,animate } = proxyquire("../src/backToTop", {
+    const { baclTop } = proxyquire("../src/backToTop", {
       jquery: jqueryStub,
     });
     baclTop();
-    expect(x.called).to.be.true;
-    expect(x.callCount).to.be.eq(1);
+    expect(onStub.called).to.be.true;
+    expect(onStub.callCount).to.be.eq(1);
     expect(animateSub.called).to.be.true;
   });
 });

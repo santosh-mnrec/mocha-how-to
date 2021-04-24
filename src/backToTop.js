@@ -6,18 +6,15 @@ const BackToTop = (function () {
       $("html, body").animate({ scrollTop: "0" }, 1000);
     });
   };
-  var animate = function () {
-    $("html, body").animate({ scrollTop: "0" }, 1000);
-  };
-  function z() {
+
+  function dummy() {
     var x = $(".se");
     x.siblings(".siblings").siblings(".siblings").toggleClass("hidden");
   }
 
   return {
     baclTop,
-    animate,
-    z,
+    dummy,
   };
 })();
 
