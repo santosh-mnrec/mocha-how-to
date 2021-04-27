@@ -1,0 +1,7 @@
+{
+    "watch-files": [
+       "test/**/*.js"
+    ],
+    "recursive": true,
+    "file": "./setup"
+}
