@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const { getData, showProgressBars } = require('../src/demo');
+const { getData, showProgressBars,x } = require('../src/demo');
 const $=require("../src/Jquery");
 describe('Progress', () => {
   afterEach(() => {

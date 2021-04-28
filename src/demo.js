@@ -17,4 +17,5 @@ const Progress = (() => {
     showProgressBars,
   };
 })();
+exports="x";
 module.exports = Progress;
