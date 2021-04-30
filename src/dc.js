@@ -12,22 +12,27 @@ const CountDown = (function () {
     }
 
     var timeNow = new Date().getTime();
+   
     var utcOffSet = new Date().getTimezoneOffset();
     var utcTimeNow = new Date(timeNow + utcOffSet * 60 * 1000).getTime();
     obj.loop(firstUpdate, $dealTimers, utcTimeNow);
   };
   function loop(firstUpdate, $dealTimers, utcTimeNow) {
+    new Date(utcTimeNow)//?
+    
     for (var i = 0; i < $dealTimers.length; i++) {
       var dealEndDateUTC = $dealTimers[i].getAttribute("data-deal-end-time");
+      dealEndDateUTC//?
       var dealCountDownHours = $dealTimers[i].getAttribute(
         "data-hour-countdown"
       );
+      dealCountDownHours//?
       var dealId = $dealTimers[i].getAttribute("data-deal-id");
 
       var dealEndTimeUTC = new Date(dealEndDateUTC).getTime();
       var remainingTime = dealEndTimeUTC - utcTimeNow;
       var remainingHours = Math.floor((remainingTime % (36e5 * 24)) / 36e5);
-
+dealEndDateUTC//?
       if (dealEndTimeUTC > 0 && dealCountDownHours >= remainingHours) {
         if (remainingTime < 0) {
           hideDealTimer(dealId);
@@ -46,7 +51,7 @@ const CountDown = (function () {
     }
   }
   function hideDealTimer(dealId) {
-    $(".sd-ps-claim-countdown-" + dealId).hide();
+   // $(".sd-ps-claim-countdown-" + dealId).hide();
   }
 
   function dealTimer(dealTimerObject, timeValue) {
@@ -116,6 +121,7 @@ const CountDown = (function () {
 
   const obj = {
     updateDealTime,
+    dealCountDownInterval,
     hideDealTimer,
     dealTimer,
     dealTimerMarkup,
