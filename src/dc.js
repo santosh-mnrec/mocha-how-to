@@ -32,6 +32,7 @@ const CountDown = (function () {
       var dealEndTimeUTC = new Date(dealEndDateUTC).getTime();
       var remainingTime = dealEndTimeUTC - utcTimeNow;
       var remainingHours = Math.floor((remainingTime % (36e5 * 24)) / 36e5);
+      remainingHours//?
 dealEndDateUTC//?
       if (dealEndTimeUTC > 0 && dealCountDownHours >= remainingHours) {
         if (remainingTime < 0) {

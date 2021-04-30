@@ -72,7 +72,7 @@ describe("Test", () => {
           if(selector==="data-deal-end-time")
             return new Date();
           else if(selector==="data-hour-countdown")
-          return 12;
+          return 1;
           else if(selector==="data-deal-id")
             return 1;
           else 
@@ -87,16 +87,12 @@ describe("Test", () => {
     ];
 
     sinon.stub($.fn, "find").returns(dom);
-    clock = sinon.useFakeTimers({
-      now: new Date(2019, 1, 1, 0, 0),
-      shouldAdvanceTime: true,
-      advanceTimeDelta: 0
-  });
-
+    
     var stub = sinon.stub(dc, "dealTimer");
-    dc.updateDealTime();
-    dc.loop(false,$(".deal-countdown-timer"),clock)
-    //expect(stub.called).to.be.true;
+   // dc.updateDealTime();
+   clock.tick(1000);
+    dc.loop(false,$(".deal-countdown-timer"),new Date())
+    expect(stub.callCount).to.be.eq(2);
     //assertions
     clock.restore();
   });
